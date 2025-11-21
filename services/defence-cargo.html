@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defence & War Zone Cargo | Ganges Shipping</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --primary-color: #2b5d8f;
+            --secondary-color: #1a3d5c;
+            --accent-color: #4fa3c7;
+            --light-blue: #5eb9d6;
+            --dark-blue: #1e4b6b;
+            --gradient: linear-gradient(135deg, #5eb9d6, #2b5d8f, #1a3d5c);
+            --dark-color: #333;
+            --light-color: #f8f9fa;
+        }
+        body { font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
+        .custom-navbar { background: rgba(255,255,255,0.98); box-shadow: 0 2px 10px rgba(0,0,0,0.08); padding: 1rem 0; }
+        .navbar-brand h2 { font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .brand-subtitle { font-size: 0.8rem; color: var(--accent-color); display: block; margin-top: -5px; }
+        .navbar-nav .nav-link { color: var(--primary-color) !important; font-weight: 600; margin: 0 0.5rem; }
+        .service-hero { height: 50vh; background: linear-gradient(135deg, rgba(30, 75, 107, 0.9), rgba(26, 61, 92, 0.9)), url('../assets/defence_warzone_cargo.jpg') center/cover; display: flex; align-items: center; justify-content: center; color: white; text-align: center; position: relative; overflow: hidden; }
+        .service-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%); animation: pulse 3s ease-in-out infinite; }
+        .service-hero h1 { font-size: 3rem; font-weight: 800; animation: fadeInDown 1s ease-out, glow 2s ease-in-out infinite alternate; position: relative; z-index: 1; text-shadow: 0 0 20px rgba(43,93,143,0.5); }
+        .breadcrumb { background: transparent; justify-content: center; animation: fadeIn 1.5s ease-out; position: relative; z-index: 1; }
+        .breadcrumb-item a { color: var(--light-blue); text-decoration: none; }
+        .service-content { padding: 80px 0; }
+        .section-title { font-size: 2.5rem; font-weight: 700; color: var(--primary-color); margin-bottom: 1.5rem; position: relative; padding-bottom: 15px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 80px; height: 4px; background: var(--gradient); animation: expandWidth 1s ease-out; }
+        .feature-card { background: var(--light-color); padding: 2rem; border-radius: 10px; margin-bottom: 2rem; border-left: 4px solid var(--accent-color); transition: all 0.3s; position: relative; overflow: hidden; }
+        .feature-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(79,163,199,0.1), transparent); transition: left 0.5s; }
+        .feature-card:hover::before { left: 100%; }
+        .feature-card:hover { transform: translateX(10px) translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .feature-card i { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 1rem; transition: transform 0.3s; }
+        .feature-card:hover i { transform: scale(1.2) rotate(5deg); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .stat-item { text-align: center; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 3px 15px rgba(0,0,0,0.08); transition: all 0.3s; }
+        .stat-item:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(43,93,143,0.2); }
+        .stat-item i { font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; transition: all 0.3s; }
+        .stat-item:hover i { transform: rotateY(360deg); color: var(--accent-color); }
+        .stat-item h3 { font-size: 2.5rem; font-weight: 800; color: var(--primary-color); }
+        .cta-section { background: var(--gradient); padding: 4rem 0; text-align: center; color: white; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 1%, transparent 2%); background-size: 50px 50px; animation: moveGrid 20s linear infinite; }
+        .btn-light-custom { background: white; color: var(--primary-color); padding: 1rem 2.5rem; border-radius: 50px; font-weight: 600; text-transform: uppercase; border: none; transition: all 0.3s; position: relative; z-index: 1; }
+        .btn-light-custom:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .secure-box { background: var(--gradient); color: white; padding: 2rem; border-radius: 10px; margin-bottom: 1rem; transition: all 0.3s; position: relative; overflow: hidden; }
+        .secure-box::after { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; background: rgba(255,255,255,0.1); border-radius: 50%; transform: translate(-50%, -50%); transition: width 0.5s, height 0.5s; }
+        .secure-box:hover::after { width: 300px; height: 300px; }
+        .secure-box:hover { transform: translateX(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .secure-box h5 { color: var(--light-blue); position: relative; z-index: 1; }
+        .secure-box p { position: relative; z-index: 1; }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-60px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(60px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.7) rotate(-10deg); }
+            to { opacity: 1; transform: scale(1) rotate(0); }
+        }
+
+        @keyframes slideInBounce {
+            0% { opacity: 0; transform: translateY(50px); }
+            60% { transform: translateY(-10px); }
+            80% { transform: translateY(5px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(43,93,143,0.5), 0 0 30px rgba(43,93,143,0.3); }
+            to { text-shadow: 0 0 30px rgba(94,185,214,0.8), 0 0 40px rgba(79,163,199,0.5); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 80px; }
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        @keyframes rotateIn {
+            from { opacity: 0; transform: rotate(-180deg) scale(0.5); }
+            to { opacity: 1; transform: rotate(0) scale(1); }
+        }
+
+        @keyframes flipIn {
+            from { opacity: 0; transform: perspective(400px) rotateY(-90deg); }
+            to { opacity: 1; transform: perspective(400px) rotateY(0); }
+        }
+
+        /* Scroll Animation Classes */
+        .scroll-animate {
+            opacity: 0;
+            transition: none;
+        }
+
+        .scroll-animate.animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+            animation-timing-function: ease-out;
+        }
+
+        .fade-in { animation-name: fadeIn; }
+        .fade-up { animation-name: fadeInUp; }
+        .fade-down { animation-name: fadeInDown; }
+        .fade-left { animation-name: fadeInLeft; }
+        .fade-right { animation-name: fadeInRight; }
+        .scale-in { animation-name: scaleIn; }
+        .slide-bounce { animation-name: slideInBounce; }
+        .rotate-in { animation-name: rotateIn; }
+        .flip-in { animation-name: flipIn; }
+
+        /* Stagger Delays */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+
+        /* Client icons animation */
+        .client-icon {
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .client-icon:hover {
+            transform: translateY(-15px) rotate(5deg) scale(1.2);
+            filter: drop-shadow(0 10px 20px rgba(43,93,143,0.3));
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <h2 class="mb-0">GANGES</h2>
+                <small class="brand-subtitle">Shipping & Logistics</small>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../index.html#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="service-hero">
+        <div class="container">
+            <h1>Defence & War Zone Cargo</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html#services">Services</a></li>
+                    <li class="breadcrumb-item active text-white">Defence Cargo</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <section class="service-content">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto scroll-animate fade-up">
+                    <h2 class="section-title">Critical Supply-Chain for Defense Operations</h2>
+                    <p class="lead">
+                        Vital logistics solutions for peacekeeping operations globally. Our rapid response team ensures critical resources reach frontline defenders and vulnerable communities through secure corridors and customized delivery protocols.
+                    </p>
+                    <p>
+                        With unmatched experience in conflict zones and high-risk environments, we provide military-grade logistics for defense contractors, peacekeeping forces, coalition operations, and security personnel worldwide.
+                    </p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item scroll-animate scale-in delay-1">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>200+</h3>
+                    <p>Secure Missions</p>
+                </div>
+                <div class="stat-item scroll-animate scale-in delay-2">
+                    <i class="fas fa-globe-americas"></i>
+                    <h3>35+</h3>
+                    <p>Conflict Zones</p>
+                </div>
+                <div class="stat-item scroll-animate scale-in delay-3">
+                    <i class="fas fa-user-shield"></i>
+                    <h3>24/7</h3>
+                    <p>Security Monitoring</p>
+                </div>
+                <div class="stat-item scroll-animate scale-in delay-4">
+                    <i class="fas fa-certificate"></i>
+                    <h3>100%</h3>
+                    <p>Secure Delivery</p>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <div class="col-12 scroll-animate fade-up">
+                    <h2 class="section-title">Specialized Cargo Services</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card scroll-animate fade-left delay-1">
+                        <i class="fas fa-parachute-box"></i>
+                        <h4>Military Equipment Transport</h4>
+                        <p>Armored vehicles, weapons systems, communication equipment, and tactical gear with specialized handling and secure transport.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card scroll-animate fade-right delay-2">
+                        <i class="fas fa-boxes"></i>
+                        <h4>Defense Supplies</h4>
+                        <p>Ammunition, fuel, food rations, uniforms, and essential supplies for military bases and forward operating positions.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card scroll-animate fade-left delay-3">
+                        <i class="fas fa-helicopter"></i>
+                        <h4>Rapid Deployment</h4>
+                        <p>Air charter services, convoy operations, and expedited shipping for urgent military requirements in hostile environments.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card scroll-animate fade-right delay-4">
+                        <i class="fas fa-warehouse"></i>
+                        <h4>Forward Operating Bases</h4>
+                        <p>Setup and supply of FOBs, camp infrastructure, mobile facilities, and logistics support for extended operations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <div class="col-lg-6">
+                    <div class="scroll-animate fade-left">
+                        <h2 class="section-title">Security Protocols</h2>
+                    </div>
+                    <div class="secure-box scroll-animate flip-in delay-1">
+                        <h5><i class="fas fa-lock me-2"></i>Classified Handling</h5>
+                        <p class="mb-0">Secure facilities and cleared personnel for handling classified military cargo and sensitive materials.</p>
+                    </div>
+                    <div class="secure-box scroll-animate flip-in delay-2">
+                        <h5><i class="fas fa-route me-2"></i>Secure Corridors</h5>
+                        <p class="mb-0">Established safe routes, military escort coordination, and real-time threat assessment during transit.</p>
+                    </div>
+                    <div class="secure-box scroll-animate flip-in delay-3">
+                        <h5><i class="fas fa-video me-2"></i>24/7 Surveillance</h5>
+                        <p class="mb-0">GPS tracking, satellite monitoring, and armed security for high-value defense shipments.</p>
+                    </div>
+                    <div class="secure-box scroll-animate flip-in delay-4">
+                        <h5><i class="fas fa-file-contract me-2"></i>ITAR Compliance</h5>
+                        <p class="mb-0">Full compliance with International Traffic in Arms Regulations and export control laws.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="scroll-animate fade-right">
+                        <h2 class="section-title">Operational Capabilities</h2>
+                    </div>
+                    <div class="secure-box scroll-animate flip-in delay-1">
+                        <h5><i class="fas fa-map-marked-alt me-2"></i>Hostile Territory Access</h5>
+                        <p class="mb-0">Proven track record delivering to active conflict zones, remote bases, and denied areas.</p>
+                    </div>
+                    <div class="secure-box scroll-animate flip-in delay-2">
+                        <h5><i class="fas fa-users me-2"></i>Cleared Personnel</h5>
+                        <p class="mb-0">Security-cleared logistics staff, drivers, and handlers with military experience.</p>
+                    </div>
+                    <div class="secure-box scroll-animate flip-in delay-3">
+                        <h5><i class="fas fa-plane-departure me-2"></i>Multi-Modal Transport</h5>
+                        <p class="mb-0">Air, sea, and ground capabilities including tactical airlift and armored convoys.</p>
+                    </div>
+                    <div class="secure-box scroll-animate flip-in delay-4">
+                        <h5><i class="fas fa-headset me-2"></i>Emergency Response</h5>
+                        <p class="mb-0">Rapid mobilization for urgent defense requirements and casualty evacuation support.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <div class="col-12 scroll-animate fade-up">
+                    <h2 class="section-title">Clients We Support</h2>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="text-center p-3 scroll-animate rotate-in delay-1">
+                        <i class="fas fa-flag-usa fa-3x mb-3 client-icon" style="color: #2b5d8f;"></i>
+                        <h5>Defense Contractors</h5>
+                        <p>Prime contractors & subcontractors</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="text-center p-3 scroll-animate rotate-in delay-2">
+                        <i class="fas fa-globe fa-3x mb-3 client-icon" style="color: #2b5d8f;"></i>
+                        <h5>UN Peacekeeping</h5>
+                        <p>International missions & forces</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="text-center p-3 scroll-animate rotate-in delay-3">
+                        <i class="fas fa-landmark fa-3x mb-3 client-icon" style="color: #2b5d8f;"></i>
+                        <h5>Government Agencies</h5>
+                        <p>Defense ministries worldwide</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="text-center p-3 scroll-animate rotate-in delay-4">
+                        <i class="fas fa-shield-alt fa-3x mb-3 client-icon" style="color: #2b5d8f;"></i>
+                        <h5>Private Security</h5>
+                        <p>PMC & security contractors</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-warning scroll-animate slide-bounce" role="alert">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <strong>Note:</strong> Due to the sensitive nature of defense logistics, all inquiries are subject to verification and security clearance. Please contact our specialized defense team for detailed information.
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section scroll-animate fade-up">
+        <div class="container">
+            <h2>Secure Defense Logistics Partner</h2>
+            <p class="lead mb-4">Contact our defense logistics specialists for classified discussions</p>
+            <a href="../index.html#contact" class="btn btn-light-custom me-3">Secure Inquiry</a>
+            <a href="tel:+971562580737" class="btn btn-outline-light btn-lg">Call: +971 56 258 0737</a>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    const animations = ['fade-in', 'fade-up', 'fade-down', 'fade-left', 'fade-right', 'scale-in', 'slide-bounce', 'rotate-in', 'flip-in'];
+                    animations.forEach(anim => {
+                        if (entry.target.classList.contains('scroll-animate')) {
+                            entry.target.classList.add(
+                                entry.target.className.split(' ').find(c => animations.includes(c)) || 'fade-up'
+                            );
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with scroll-animate class
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.scroll-animate');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.service-hero');
+            if (hero && scrolled < hero.offsetHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.4}px)`;
+                hero.style.opacity = 1 - (scrolled / (hero.offsetHeight * 1.5));
+            }
+        });
+
+        // Add mouse movement effect to hero
+        document.querySelector('.service-hero').addEventListener('mousemove', (e) => {
+            const hero = e.currentTarget;
+            const rect = hero.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            
+            hero.style.backgroundPosition = `${50 + x * 10}% ${50 + y * 10}%`;
+        });
+    </script>
+</body>
+</html>

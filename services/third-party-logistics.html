@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inland Freight Services | Ganges Shipping</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --primary-color: #2b5d8f; 
+            --accent-color: #4fa3c7; 
+            --light-blue: #5eb9d6; 
+        }
+        
+        body { 
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Scroll Animation Classes */
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        /* Stagger animation delays */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        .custom-navbar { 
+            background: rgba(255,255,255,0.98); 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08); 
+            padding: 1rem 0; 
+        }
+        
+        .navbar-brand h2 { 
+            font-weight: 800; 
+            background: linear-gradient(135deg, #5eb9d6, #2b5d8f); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+        
+        .brand-subtitle { 
+            font-size: 0.8rem; 
+            color: #4fa3c7; 
+            display: block; 
+            margin-top: -5px; 
+        }
+        
+        .navbar-nav .nav-link { 
+            color: #2b5d8f !important; 
+            font-weight: 600; 
+            margin: 0 0.5rem; 
+        }
+        
+        .service-hero { 
+            height: 50vh; 
+            background: linear-gradient(135deg, rgba(43,93,143,0.9), rgba(26,61,92,0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%232b5d8f" width="1200" height="600"/></svg>') center/cover; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: white; 
+            text-align: center; 
+        }
+        
+        .service-hero h1 { 
+            font-size: 3.5rem; 
+            font-weight: 800; 
+        }
+        
+        .breadcrumb { 
+            background: transparent; 
+            justify-content: center; 
+        }
+        
+        .breadcrumb-item a { 
+            color: #5eb9d6; 
+            text-decoration: none; 
+        }
+        
+        .service-content { 
+            padding: 80px 0; 
+        }
+        
+        .section-title { 
+            font-size: 2.5rem; 
+            font-weight: 700; 
+            color: var(--primary-color); 
+            margin-bottom: 1.5rem; 
+            position: relative; 
+            padding-bottom: 15px; 
+        }
+        
+        .section-title::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 80px; 
+            height: 4px; 
+            background: linear-gradient(90deg, #5eb9d6, #4fa3c7); 
+        }
+        
+        .feature-card { 
+            background: #f8f9fa; 
+            padding: 2rem; 
+            border-radius: 10px; 
+            margin-bottom: 2rem; 
+            border-left: 4px solid var(--accent-color); 
+            transition: all 0.3s; 
+        }
+        
+        .feature-card:hover { 
+            transform: translateX(10px); 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1); 
+        }
+        
+        .feature-card i { 
+            font-size: 2.5rem; 
+            color: var(--accent-color); 
+            margin-bottom: 1rem; 
+        }
+        
+        .stats-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 2rem; 
+            margin: 3rem 0; 
+        }
+        
+        .stat-item { 
+            text-align: center; 
+            padding: 2rem; 
+            background: white; 
+            border-radius: 10px; 
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08); 
+        }
+        
+        .stat-item i { 
+            font-size: 3rem; 
+            color: var(--accent-color); 
+            margin-bottom: 1rem; 
+        }
+        
+        .stat-item h3 { 
+            font-size: 2.5rem; 
+            font-weight: 800; 
+            color: var(--primary-color); 
+        }
+        
+        .cta-section { 
+            background: linear-gradient(135deg, #5eb9d6, #2b5d8f); 
+            padding: 4rem 0; 
+            text-align: center; 
+            color: white; 
+        }
+        
+        .btn-light-custom { 
+            background: white; 
+            color: var(--primary-color); 
+            padding: 1rem 2.5rem; 
+            border-radius: 50px; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            border: none; 
+            transition: all 0.3s; 
+        }
+
+        .btn-light-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .vehicle-card { 
+            background: white; 
+            padding: 1.5rem; 
+            border-radius: 10px; 
+            margin-bottom: 1rem; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08); 
+            transition: all 0.3s ease;
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .vehicle-card i { 
+            color: var(--primary-color); 
+            font-size: 2rem; 
+            margin-right: 1rem; 
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <h2 class="mb-0">GANGES</h2>
+                <small class="brand-subtitle">Shipping & Logistics</small>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../index.html#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="service-hero">
+        <div class="container">
+            <h1>Inland Freight Services</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html#services">Services</a></li>
+                    <li class="breadcrumb-item active text-white">Inland Freight</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <section class="service-content">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto fade-in-up">
+                    <h2 class="section-title">Coast-to-Coast Land Transportation</h2>
+                    <p class="lead">
+                        Reliable inland freight solutions tailored to your logistics needs. Our expert team, extensive road network, and advanced tracking ensure your cargo moves efficiently across all inland routes.
+                    </p>
+                    <p>
+                        Whether it's FTL (Full Truck Load), LTL (Less Than Truck Load), or specialized transport, we connect your business across continents with professional drivers, modern fleet, and 24/7 monitoring for secure deliveries.
+                    </p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item fade-in-up delay-1">
+                    <i class="fas fa-truck"></i>
+                    <h3>300+</h3>
+                    <p>Fleet Vehicles</p>
+                </div>
+                <div class="stat-item fade-in-up delay-2">
+                    <i class="fas fa-road"></i>
+                    <h3>50K+</h3>
+                    <p>KM Daily Coverage</p>
+                </div>
+                <div class="stat-item fade-in-up delay-3">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>90+</h3>
+                    <p>Cities Connected</p>
+                </div>
+                <div class="stat-item fade-in-up delay-4">
+                    <i class="fas fa-clock"></i>
+                    <h3>98.5%</h3>
+                    <p>On-Time Delivery</p>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <div class="col-12 fade-in-left">
+                    <h2 class="section-title">Our Fleet</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="vehicle-card d-flex align-items-center fade-in-left delay-1">
+                        <i class="fas fa-truck-moving"></i>
+                        <div>
+                            <h5 class="mb-1">Full Truck Load (FTL)</h5>
+                            <p class="mb-0 text-muted">Dedicated vehicles for large shipments - 20-40 tons capacity</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="vehicle-card d-flex align-items-center fade-in-right delay-1">
+                        <i class="fas fa-dolly"></i>
+                        <div>
+                            <h5 class="mb-1">Less Than Truck Load (LTL)</h5>
+                            <p class="mb-0 text-muted">Cost-effective consolidated shipping for smaller loads</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="vehicle-card d-flex align-items-center fade-in-left delay-2">
+                        <i class="fas fa-temperature-low"></i>
+                        <div>
+                            <h5 class="mb-1">Refrigerated Trucks</h5>
+                            <p class="mb-0 text-muted">Temperature-controlled transport for perishables</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="vehicle-card d-flex align-items-center fade-in-right delay-2">
+                        <i class="fas fa-trailer"></i>
+                        <div>
+                            <h5 class="mb-1">Flatbed Trailers</h5>
+                            <p class="mb-0 text-muted">Oversized and heavy machinery transport</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <div class="col-12 fade-in-left">
+                    <h2 class="section-title">Service Features</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card fade-in-left delay-1">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>Real-Time GPS Tracking</h4>
+                        <p>Monitor your shipment location 24/7 with live updates, estimated arrival times, and route visibility through our mobile app.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card fade-in-right delay-1">
+                        <i class="fas fa-user-shield"></i>
+                        <h4>Trained Drivers</h4>
+                        <p>Professional, licensed drivers with safety training, route knowledge, and customer service skills for reliable deliveries.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card fade-in-left delay-2">
+                        <i class="fas fa-tools"></i>
+                        <h4>Regular Maintenance</h4>
+                        <p>Well-maintained fleet with scheduled servicing, safety inspections, and breakdown support to minimize delays.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card fade-in-right delay-2">
+                        <i class="fas fa-phone-volume"></i>
+                        <h4>24/7 Customer Support</h4>
+                        <p>Round-the-clock assistance for booking, tracking, emergencies, and special handling requests.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <div class="col-12 fade-in-up">
+                    <h2 class="section-title">Industries Served</h2>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="text-center p-3 fade-in-up delay-1">
+                        <i class="fas fa-industry fa-3x text-primary mb-3"></i>
+                        <h5>Manufacturing</h5>
+                        <p>Raw materials & finished goods</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="text-center p-3 fade-in-up delay-2">
+                        <i class="fas fa-hard-hat fa-3x text-primary mb-3"></i>
+                        <h5>Construction</h5>
+                        <p>Building materials & equipment</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="text-center p-3 fade-in-up delay-3">
+                        <i class="fas fa-store fa-3x text-primary mb-3"></i>
+                        <h5>Retail</h5>
+                        <p>Store distribution & replenishment</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="text-center p-3 fade-in-up delay-4">
+                        <i class="fas fa-apple-alt fa-3x text-primary mb-3"></i>
+                        <h5>Agriculture</h5>
+                        <p>Farm produce & livestock feed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section fade-in">
+        <div class="container">
+            <h2>Need Inland Transportation?</h2>
+            <p class="lead mb-4">Get competitive rates for your trucking requirements</p>
+            <a href="../index.html#contact" class="btn btn-light-custom me-3">Get Quote</a>
+            <a href="tel:+971562580737" class="btn btn-outline-light btn-lg">Call: +971 56 258 0737</a>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Scroll Animation Script -->
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Optional: unobserve after animation to improve performance
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.fade-in-left, .fade-in-right, .fade-in-up, .fade-in');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

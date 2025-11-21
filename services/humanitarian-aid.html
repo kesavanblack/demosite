@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humanitarian Aid & Relief Cargo | Ganges Shipping</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --primary-color: #2b5d8f;
+            --secondary-color: #1a3d5c;
+            --accent-color: #4fa3c7;
+            --light-blue: #5eb9d6;
+            --dark-blue: #1e4b6b;
+            --gradient: linear-gradient(135deg, #5eb9d6, #2b5d8f, #1a3d5c);
+            --dark-color: #333;
+            --light-color: #f8f9fa;
+            --relief-red: #e74c3c;
+        }
+        body { font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
+        .custom-navbar { background: rgba(255,255,255,0.98); box-shadow: 0 2px 10px rgba(0,0,0,0.08); padding: 1rem 0; }
+        .navbar-brand h2 { font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .brand-subtitle { font-size: 0.8rem; color: var(--accent-color); display: block; margin-top: -5px; }
+        .navbar-nav .nav-link { color: var(--primary-color) !important; font-weight: 600; margin: 0 0.5rem; }
+        .service-hero { height: 50vh; background: linear-gradient(135deg, rgba(43,93,143,0.9), rgba(26,61,92,0.9)), url('../assets/humanitarian_&_cargo.jpeg') center/cover; display: flex; align-items: center; justify-content: center; color: white; text-align: center; position: relative; overflow: hidden; }
+        .service-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 50%, rgba(231,76,60,0.2) 0%, transparent 50%); animation: pulse 4s ease-in-out infinite; }
+        .service-hero h1 { font-size: 3rem; font-weight: 800; animation: fadeInDown 1s ease-out; position: relative; z-index: 1; text-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .breadcrumb { background: transparent; justify-content: center; animation: fadeIn 1.5s ease-out; position: relative; z-index: 1; }
+        .breadcrumb-item a { color: var(--light-blue); text-decoration: none; transition: color 0.3s; }
+        .breadcrumb-item a:hover { color: white; }
+        .service-content { padding: 80px 0; }
+        .section-title { font-size: 2.5rem; font-weight: 700; color: var(--primary-color); margin-bottom: 1.5rem; position: relative; padding-bottom: 15px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 80px; height: 4px; background: var(--gradient); animation: expandWidth 1s ease-out; }
+        .feature-card { background: var(--light-color); padding: 2rem; border-radius: 10px; margin-bottom: 2rem; border-left: 4px solid var(--relief-red); transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); position: relative; overflow: hidden; }
+        .feature-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(231,76,60,0.1), transparent); transition: left 0.6s; }
+        .feature-card:hover::before { left: 100%; }
+        .feature-card:hover { transform: translateX(15px) translateY(-8px); box-shadow: 0 15px 40px rgba(231,76,60,0.2); border-left-width: 6px; }
+        .feature-card i { font-size: 2.5rem; color: var(--relief-red); margin-bottom: 1rem; transition: all 0.4s; }
+        .feature-card:hover i { transform: scale(1.3) rotate(10deg); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .stat-item { text-align: center; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 3px 15px rgba(0,0,0,0.08); transition: all 0.4s; position: relative; }
+        .stat-item::after { content: ''; position: absolute; inset: 0; border-radius: 10px; background: linear-gradient(135deg, rgba(231,76,60,0.1), rgba(192,57,43,0.1)); opacity: 0; transition: opacity 0.4s; }
+        .stat-item:hover::after { opacity: 1; }
+        .stat-item:hover { transform: translateY(-15px) scale(1.05); box-shadow: 0 15px 40px rgba(231,76,60,0.25); }
+        .stat-item i { font-size: 3rem; color: var(--relief-red); margin-bottom: 1rem; transition: all 0.5s; position: relative; z-index: 1; }
+        .stat-item:hover i { transform: rotateY(360deg) scale(1.2); }
+        .stat-item h3 { font-size: 2.5rem; font-weight: 800; color: var(--primary-color); position: relative; z-index: 1; }
+        .stat-item p { position: relative; z-index: 1; }
+        .cta-section { background: linear-gradient(135deg, #e74c3c, #c0392b); padding: 4rem 0; text-align: center; color: white; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.08) 1%, transparent 2%); background-size: 40px 40px; animation: moveGrid 25s linear infinite; }
+        .cta-section h2 { position: relative; z-index: 1; animation: pulse 2s ease-in-out infinite; }
+        .btn-light-custom { background: white; color: var(--relief-red); padding: 1rem 2.5rem; border-radius: 50px; font-weight: 600; text-transform: uppercase; border: none; transition: all 0.3s; position: relative; z-index: 1; }
+        .btn-light-custom:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+        .mission-card { background: var(--gradient); color: white; padding: 2rem; border-radius: 10px; margin-bottom: 1rem; transition: all 0.4s; position: relative; overflow: hidden; }
+        .mission-card::after { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; background: rgba(255,255,255,0.15); border-radius: 50%; transform: translate(-50%, -50%); transition: width 0.6s, height 0.6s; }
+        .mission-card:hover::after { width: 400px; height: 400px; }
+        .mission-card:hover { transform: translateX(15px) scale(1.02); box-shadow: 0 12px 35px rgba(0,0,0,0.3); }
+        .mission-card h5 { color: var(--light-blue); position: relative; z-index: 1; transition: color 0.3s; }
+        .mission-card:hover h5 { color: white; }
+        .mission-card p { position: relative; z-index: 1; }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-60px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(60px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.7) rotate(-10deg); }
+            to { opacity: 1; transform: scale(1) rotate(0); }
+        }
+
+        @keyframes slideInBounce {
+            0% { opacity: 0; transform: translateY(60px); }
+            60% { transform: translateY(-12px); }
+            80% { transform: translateY(6px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.02); }
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 80px; }
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, 40px); }
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes flipInX {
+            from { opacity: 0; transform: perspective(400px) rotateX(-90deg); }
+            to { opacity: 1; transform: perspective(400px) rotateX(0); }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10%, 30% { transform: scale(1.1); }
+            20%, 40% { transform: scale(0.95); }
+        }
+
+        /* Scroll Animation Classes */
+        .scroll-animate {
+            opacity: 0;
+            transition: none;
+        }
+
+        .scroll-animate.animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+            animation-timing-function: ease-out;
+        }
+
+        .fade-in { animation-name: fadeIn; }
+        .fade-up { animation-name: fadeInUp; }
+        .fade-down { animation-name: fadeInDown; }
+        .fade-left { animation-name: fadeInLeft; }
+        .fade-right { animation-name: fadeInRight; }
+        .scale-in { animation-name: scaleIn; }
+        .slide-bounce { animation-name: slideInBounce; }
+        .zoom-in { animation-name: zoomIn; }
+        .flip-in-x { animation-name: flipInX; }
+
+        /* Stagger Delays */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+
+        /* Crisis icons with special animation */
+        .crisis-icon {
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: inline-block;
+        }
+        .crisis-icon:hover {
+            animation: heartbeat 1s ease-in-out;
+            filter: drop-shadow(0 10px 25px rgba(231,76,60,0.4));
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <h2 class="mb-0">GANGES</h2>
+                <small class="brand-subtitle">Shipping & Logistics</small>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../index.html#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="service-hero">
+        <div class="container">
+            <h1>Humanitarian Aid & Relief Cargo</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html#services">Services</a></li>
+                    <li class="breadcrumb-item active text-white">Humanitarian Aid</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <section class="service-content">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto scroll-animate fade-up">
+                    <h2 class="section-title">Emergency Humanitarian Logistics</h2>
+                    <p class="lead">
+                        When disaster strikes, every minute counts. Our rapid-action team delivers critical supplies to challenging locations worldwide with optimized risk management and strategic deployment.
+                    </p>
+                    <p>
+                        With 20+ years of experience in crisis zones, we partner with NGOs, UN agencies, governments, and relief organizations to ensure life-saving supplies reach those who need them most - quickly, safely, and efficiently.
+                    </p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item scroll-animate scale-in delay-1">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>150+</h3>
+                    <p>Relief Missions</p>
+                </div>
+                <div class="stat-item scroll-animate scale-in delay-2">
+                    <i class="fas fa-globe"></i>
+                    <h3>40+</h3>
+                    <p>Countries Served</p>
+                </div>
+                <div class="stat-item scroll-animate scale-in delay-3">
+                    <i class="fas fa-box-open"></i>
+                    <h3>5000+</h3>
+                    <p>Tons Delivered</p>
+                </div>
+                <div class="stat-item scroll-animate scale-in delay-4">
+                    <i class="fas fa-clock"></i>
+                    <h3>24-48hrs</h3>
+                    <p>Rapid Response</p>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <div class="col-12 scroll-animate fade-up">
+                    <h2 class="section-title">What We Deliver</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card scroll-animate fade-left delay-1">
+                        <i class="fas fa-medkit"></i>
+                        <h4>Medical Supplies</h4>
+                        <p>Emergency medical equipment, medicines, vaccines, surgical supplies, and mobile health units to disaster zones.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card scroll-animate fade-right delay-2">
+                        <i class="fas fa-water"></i>
+                        <h4>Food & Water</h4>
+                        <p>Emergency food rations, clean water, water purification systems, and nutrition supplements for affected populations.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card scroll-animate fade-left delay-3">
+                        <i class="fas fa-home"></i>
+                        <h4>Shelter Materials</h4>
+                        <p>Tents, tarpaulins, blankets, temporary housing materials, and camp infrastructure for displaced persons.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card scroll-animate fade-right delay-4">
+                        <i class="fas fa-tools"></i>
+                        <h4>Relief Equipment</h4>
+                        <p>Generators, communication devices, search & rescue tools, and reconstruction materials for disaster response.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <div class="col-lg-6">
+                    <div class="scroll-animate fade-left">
+                        <h2 class="section-title">Our Capabilities</h2>
+                    </div>
+                    <div class="mission-card scroll-animate flip-in-x delay-1">
+                        <h5><i class="fas fa-plane me-2"></i>Air Charter Services</h5>
+                        <p class="mb-0">Dedicated cargo aircraft for urgent relief supplies to remote or inaccessible locations.</p>
+                    </div>
+                    <div class="mission-card scroll-animate flip-in-x delay-2">
+                        <h5><i class="fas fa-route me-2"></i>Last-Mile Delivery</h5>
+                        <p class="mb-0">Ground transport including trucks, helicopters, and boats to reach final beneficiaries.</p>
+                    </div>
+                    <div class="mission-card scroll-animate flip-in-x delay-3">
+                        <h5><i class="fas fa-warehouse me-2"></i>Forward Positioning</h5>
+                        <p class="mb-0">Pre-positioned stock in strategic locations for rapid deployment during emergencies.</p>
+                    </div>
+                    <div class="mission-card scroll-animate flip-in-x delay-4">
+                        <h5><i class="fas fa-user-shield me-2"></i>Security Coordination</h5>
+                        <p class="mb-0">Risk assessment, security escorts, and safe passage coordination in unstable regions.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="scroll-animate fade-right">
+                        <h2 class="section-title">Partners We Work With</h2>
+                    </div>
+                    <div class="mission-card scroll-animate flip-in-x delay-1">
+                        <h5><i class="fas fa-hands-helping me-2"></i>International NGOs</h5>
+                        <p class="mb-0">Red Cross, Médecins Sans Frontières, Oxfam, CARE International</p>
+                    </div>
+                    <div class="mission-card scroll-animate flip-in-x delay-2">
+                        <h5><i class="fas fa-landmark me-2"></i>UN Agencies</h5>
+                        <p class="mb-0">UNHCR, WFP, UNICEF, WHO humanitarian operations</p>
+                    </div>
+                    <div class="mission-card scroll-animate flip-in-x delay-3">
+                        <h5><i class="fas fa-flag me-2"></i>Government Bodies</h5>
+                        <p class="mb-0">National disaster management agencies and civil protection units</p>
+                    </div>
+                    <div class="mission-card scroll-animate flip-in-x delay-4">
+                        <h5><i class="fas fa-users me-2"></i>Local Organizations</h5>
+                        <p class="mb-0">Community-based groups and grassroots relief initiatives</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <div class="col-12 scroll-animate fade-up">
+                    <h2 class="section-title">Crisis Situations We Handle</h2>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="text-center p-3 scroll-animate zoom-in delay-1">
+                        <i class="fas fa-house-damage fa-3x text-danger mb-3 crisis-icon"></i>
+                        <h5>Natural Disasters</h5>
+                        <p>Earthquakes, floods, hurricanes, tsunamis</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="text-center p-3 scroll-animate zoom-in delay-2">
+                        <i class="fas fa-viruses fa-3x text-danger mb-3 crisis-icon"></i>
+                        <h5>Health Emergencies</h5>
+                        <p>Epidemics, pandemics, disease outbreaks</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="text-center p-3 scroll-animate zoom-in delay-3">
+                        <i class="fas fa-users fa-3x text-danger mb-3 crisis-icon"></i>
+                        <h5>Refugee Crises</h5>
+                        <p>Mass displacement, refugee camps</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="text-center p-3 scroll-animate zoom-in delay-4">
+                        <i class="fas fa-exclamation-triangle fa-3x text-danger mb-3 crisis-icon"></i>
+                        <h5>Complex Emergencies</h5>
+                        <p>Conflict zones, food insecurity</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section scroll-animate fade-up">
+        <div class="container">
+            <h2>Need Emergency Logistics Support?</h2>
+            <p class="lead mb-4">Our crisis response team is available 24/7 for urgent humanitarian missions</p>
+            <a href="../index.html#contact" class="btn btn-light-custom me-3">Contact Emergency Team</a>
+            <a href="tel:+971562580737" class="btn btn-outline-light btn-lg">Emergency: +971 56 258 0737</a>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    const animations = ['fade-in', 'fade-up', 'fade-down', 'fade-left', 'fade-right', 'scale-in', 'slide-bounce', 'zoom-in', 'flip-in-x'];
+                    animations.forEach(anim => {
+                        if (entry.target.classList.contains('scroll-animate')) {
+                            entry.target.classList.add(
+                                entry.target.className.split(' ').find(c => animations.includes(c)) || 'fade-up'
+                            );
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with scroll-animate class
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.scroll-animate');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.service-hero');
+            if (hero && scrolled < hero.offsetHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.4}px)`;
+                hero.style.opacity = 1 - (scrolled / (hero.offsetHeight * 1.5));
+            }
+        });
+
+        // Add subtle floating animation to crisis icons
+        const crisisIcons = document.querySelectorAll('.crisis-icon');
+        crisisIcons.forEach((icon, index) => {
+            icon.style.animation = `float 3s ease-in-out ${index * 0.2}s infinite`;
+        });
+
+        // Add float keyframe dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

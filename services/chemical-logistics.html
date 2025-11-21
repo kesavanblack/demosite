@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemical Logistics Services | Ganges Shipping</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { --primary-color: #2b5d8f; --accent-color: #4fa3c7; --chemical: #ff6b35; }
+        body { font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
+        .custom-navbar { background: rgba(255,255,255,0.98); box-shadow: 0 2px 10px rgba(0,0,0,0.08); padding: 1rem 0; }
+        .navbar-brand h2 { font-weight: 800; background: linear-gradient(135deg, #5eb9d6, #2b5d8f); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .brand-subtitle { font-size: 0.8rem; color: #4fa3c7; display: block; margin-top: -5px; }
+        .navbar-nav .nav-link { color: #2b5d8f !important; font-weight: 600; margin: 0 0.5rem; }
+        .service-hero { height: 50vh; background: linear-gradient(135deg, rgba(43,93,143,0.9), rgba(79,163,199,0.9)), url('../assets/chemical_logistics.jpg') center/cover; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .service-hero h1 { font-size: 3.5rem; font-weight: 800; animation: fadeInDown 1s ease-out; }
+        .breadcrumb { background: transparent; justify-content: center; animation: fadeIn 1.5s ease-out; }
+        .breadcrumb-item a { color: #5eb9d6; text-decoration: none; }
+        .service-content { padding: 80px 0; }
+        .section-title { font-size: 2.5rem; font-weight: 700; color: var(--primary-color); margin-bottom: 1.5rem; position: relative; padding-bottom: 15px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 80px; height: 4px; background: linear-gradient(90deg, #2b5d8f, #4fa3c7); }
+        .feature-card { background: #f8f9fa; padding: 2rem; border-radius: 10px; margin-bottom: 2rem; border-left: 4px solid var(--accent-color); transition: all 0.3s; }
+        .feature-card:hover { transform: translateX(10px); box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .feature-card i { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 1rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .stat-item { text-align: center; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 3px 15px rgba(0,0,0,0.08); }
+        .stat-item i { font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; }
+        .stat-item h3 { font-size: 2.5rem; font-weight: 800; color: var(--primary-color); }
+        .cta-section { background: linear-gradient(135deg, #2b5d8f, #4fa3c7); padding: 4rem 0; text-align: center; color: white; }
+        .btn-light-custom { background: white; color: var(--primary-color); padding: 1rem 2.5rem; border-radius: 50px; font-weight: 600; text-transform: uppercase; border: none; transition: all 0.3s; }
+        .safety-badge { background: white; padding: 1.2rem; border-radius: 10px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 3px solid var(--accent-color); }
+        .safety-badge i { color: var(--accent-color); margin-right: 0.8rem; font-size: 1.5rem; }
+        .compliance-box { background: linear-gradient(135deg, #2b5d8f, #4fa3c7); color: white; padding: 2rem; border-radius: 10px; }
+        .compliance-box h5 { color: #fff; }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideInRotate {
+            from { opacity: 0; transform: translateY(30px) rotate(-5deg); }
+            to { opacity: 1; transform: translateY(0) rotate(0); }
+        }
+
+        /* Scroll Animation Classes */
+        .scroll-animate {
+            opacity: 0;
+            transition: none;
+        }
+
+        .scroll-animate.animated {
+            animation-duration: 0.8s;
+            animation-fill-mode: both;
+            animation-timing-function: ease-out;
+        }
+
+        .fade-in { animation-name: fadeIn; }
+        .fade-up { animation-name: fadeInUp; }
+        .fade-down { animation-name: fadeInDown; }
+        .fade-left { animation-name: fadeInLeft; }
+        .fade-right { animation-name: fadeInRight; }
+        .scale-in { animation-name: scaleIn; }
+        .slide-rotate { animation-name: slideInRotate; }
+
+        /* Stagger Delays */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <h2 class="mb-0">GANGES</h2>
+                <small class="brand-subtitle">Shipping & Logistics</small>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../index.html#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="service-hero">
+        <div class="container">
+            <h1>Chemical Logistics</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html#services">Services</a></li>
+                    <li class="breadcrumb-item active text-white">Chemical Logistics</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <section class="service-content">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto scroll-animate fade-up">
+                    <h2 class="section-title">Specialized Chemical Transport Solutions</h2>
+                    <p class="lead">
+                        Safe, compliant handling of hazardous materials. Our hazmat-trained personnel and purpose-built equipment ensure proper transport of sensitive chemicals from origin to destination, minimizing environmental and operational risks.
+                    </p>
+                    <p>
+                        With ISO certifications and full regulatory compliance, we manage the complete lifecycle of chemical logistics - from dangerous goods classification to secure delivery, adhering to IMDG, ADR, IATA, and local hazmat regulations.
+                    </p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item scroll-animate scale-in delay-1">
+                    <i class="fas fa-flask"></i>
+                    <h3>3000+</h3>
+                    <p>Chemical Shipments</p>
+                </div>
+                <div class="stat-item scroll-animate scale-in delay-2">
+                    <i class="fas fa-certificate"></i>
+                    <h3>100%</h3>
+                    <p>Compliance Rate</p>
+                </div>
+                <div class="stat-item scroll-animate scale-in delay-3">
+                    <i class="fas fa-user-shield"></i>
+                    <h3>50+</h3>
+                    <p>Certified Handlers</p>
+                </div>
+                <div class="stat-item scroll-animate scale-in delay-4">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Zero</h3>
+                    <p>Safety Incidents</p>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <div class="col-12 scroll-animate fade-up">
+                    <h2 class="section-title">Chemical Categories We Handle</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card scroll-animate fade-left delay-1">
+                        <i class="fas fa-fire"></i>
+                        <h4>Flammable Liquids & Gases</h4>
+                        <p>Solvents, fuels, petroleum products, industrial alcohols with temperature-controlled transport and explosion-proof equipment.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card scroll-animate fade-right delay-2">
+                        <i class="fas fa-skull-crossbones"></i>
+                        <h4>Toxic & Corrosive Substances</h4>
+                        <p>Acids, bases, poisonous materials requiring specialized containment, ventilation, and emergency response protocols.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card scroll-animate fade-left delay-3">
+                        <i class="fas fa-industry"></i>
+                        <h4>Industrial Chemicals</h4>
+                        <p>Manufacturing chemicals, catalysts, polymers, and raw materials for production processes with bulk handling capabilities.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card scroll-animate fade-right delay-4">
+                        <i class="fas fa-prescription-bottle"></i>
+                        <h4>Pharmaceutical Ingredients</h4>
+                        <p>Active pharmaceutical ingredients (APIs), excipients, and specialty chemicals with GMP-compliant handling.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <div class="col-lg-6">
+                    <div class="scroll-animate fade-left">
+                        <h2 class="section-title">Safety & Compliance</h2>
+                    </div>
+                    <div class="safety-badge scroll-animate fade-left delay-1 d-flex align-items-center">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <strong>HAZMAT Certified Personnel</strong>
+                            <p class="mb-0 small text-muted">DG trained drivers, handlers, and logistics coordinators</p>
+                        </div>
+                    </div>
+                    <div class="safety-badge scroll-animate fade-left delay-2 d-flex align-items-center">
+                        <i class="fas fa-truck"></i>
+                        <div>
+                            <strong>ADR/IMDG Compliant Vehicles</strong>
+                            <p class="mb-0 small text-muted">Purpose-built tankers and chemical transport units</p>
+                        </div>
+                    </div>
+                    <div class="safety-badge scroll-animate fade-left delay-3 d-flex align-items-center">
+                        <i class="fas fa-file-alt"></i>
+                        <div>
+                            <strong>Complete Documentation</strong>
+                            <p class="mb-0 small text-muted">MSDS, shipping papers, emergency response guides</p>
+                        </div>
+                    </div>
+                    <div class="safety-badge scroll-animate fade-left delay-4 d-flex align-items-center">
+                        <i class="fas fa-warehouse"></i>
+                        <div>
+                            <strong>Bonded Chemical Storage</strong>
+                            <p class="mb-0 small text-muted">Temperature-controlled, segregated warehousing</p>
+                        </div>
+                    </div>
+                    <div class="safety-badge scroll-animate fade-left delay-5 d-flex align-items-center">
+                        <i class="fas fa-ambulance"></i>
+                        <div>
+                            <strong>Emergency Response Team</strong>
+                            <p class="mb-0 small text-muted">24/7 hazmat incident response capabilities</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="compliance-box scroll-animate fade-right">
+                        <h3><i class="fas fa-check-circle me-2"></i>Certifications</h3>
+                        <ul class="list-unstyled mt-3">
+                            <li class="mb-2">✓ ISO 9001:2015 Quality Management</li>
+                            <li class="mb-2">✓ ISO 14001:2015 Environmental Management</li>
+                            <li class="mb-2">✓ OHSAS 18001 Health & Safety</li>
+                            <li class="mb-2">✓ SQAS (Safety & Quality Assessment)</li>
+                            <li class="mb-2">✓ CDG (Carriage of Dangerous Goods)</li>
+                            <li class="mb-2">✓ IATA Dangerous Goods Certified</li>
+                        </ul>
+                        
+                        <h3 class="mt-4"><i class="fas fa-globe me-2"></i>Regulatory Compliance</h3>
+                        <ul class="list-unstyled mt-3">
+                            <li class="mb-2">✓ UN Recommendations on Transport of DG</li>
+                            <li class="mb-2">✓ IMDG Code (Maritime Transport)</li>
+                            <li class="mb-2">✓ ADR/RID (Road/Rail Transport Europe)</li>
+                            <li class="mb-2">✓ IATA DGR (Air Transport)</li>
+                            <li class="mb-2">✓ EPA & OSHA Regulations (USA)</li>
+                            <li class="mb-2">✓ REACH & CLP (European Union)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <div class="col-12 scroll-animate fade-up">
+                    <h2 class="section-title">Services Offered</h2>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="text-center p-3 scroll-animate slide-rotate delay-1">
+                        <i class="fas fa-ship fa-3x mb-3" style="color: #2b5d8f;"></i>
+                        <h5>Bulk Chemical Transport</h5>
+                        <p>ISO tanks, flexitanks, and bulk containers</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="text-center p-3 scroll-animate slide-rotate delay-2">
+                        <i class="fas fa-box fa-3x mb-3" style="color: #2b5d8f;"></i>
+                        <h5>Packaged Chemicals</h5>
+                        <p>Drums, IBCs, bottles, and small packs</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="text-center p-3 scroll-animate slide-rotate delay-3">
+                        <i class="fas fa-thermometer-half fa-3x mb-3" style="color: #2b5d8f;"></i>
+                        <h5>Temperature Control</h5>
+                        <p>Heated/cooled transport as required</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="text-center p-3 scroll-animate slide-rotate delay-4">
+                        <i class="fas fa-recycle fa-3x mb-3" style="color: #2b5d8f;"></i>
+                        <h5>Waste Management</h5>
+                        <p>Hazardous waste collection & disposal</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="text-center p-3 scroll-animate slide-rotate delay-5">
+                        <i class="fas fa-file-contract fa-3x mb-3" style="color: #2b5d8f;"></i>
+                        <h5>Customs Brokerage</h5>
+                        <p>DG customs clearance expertise</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="text-center p-3 scroll-animate slide-rotate delay-6">
+                        <i class="fas fa-clipboard-check fa-3x mb-3" style="color: #2b5d8f;"></i>
+                        <h5>Compliance Consulting</h5>
+                        <p>Classification, labeling, documentation</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-danger scroll-animate fade-up" role="alert">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <strong>Safety First:</strong> All chemical shipments require proper classification, packaging, labeling, and documentation. Our team will guide you through the complete process to ensure full regulatory compliance.
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section scroll-animate fade-up">
+        <div class="container">
+            <h2>Safe Chemical Transport Partner</h2>
+            <p class="lead mb-4">Contact our chemical logistics specialists for compliant solutions</p>
+            <a href="../index.html#contact" class="btn btn-light-custom me-3">Get Quote</a>
+            <a href="tel:+971562580737" class="btn btn-outline-light btn-lg">Call: +971 56 258 0737</a>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    // Get the animation class
+                    const animations = ['fade-in', 'fade-up', 'fade-down', 'fade-left', 'fade-right', 'scale-in', 'slide-rotate'];
+                    animations.forEach(anim => {
+                        if (entry.target.classList.contains('scroll-animate')) {
+                            entry.target.classList.add(
+                                entry.target.className.split(' ').find(c => animations.includes(c)) || 'fade-up'
+                            );
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with scroll-animate class
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.scroll-animate');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.service-hero');
+            if (hero && scrolled < hero.offsetHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>

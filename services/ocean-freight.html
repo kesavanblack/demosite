@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean Freight Services | Ganges Shipping & Logistics</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #2b5d8f;
+            --secondary-color: #1a3d5c;
+            --accent-color: #4fa3c7;
+            --light-blue: #5eb9d6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Scroll Animation Classes */
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        /* Stagger animation delays */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        .custom-navbar {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand h2 {
+            font-weight: 800;
+            background: linear-gradient(135deg, #5eb9d6, #2b5d8f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-subtitle {
+            font-size: 0.8rem;
+            color: #4fa3c7;
+            display: block;
+            margin-top: -5px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #2b5d8f !important;
+            font-weight: 600;
+            margin: 0 0.5rem;
+        }
+
+        .service-hero {
+            height: 50vh;
+            background: linear-gradient(135deg, rgba(43, 93, 143, 0.9), rgba(26, 61, 92, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%232b5d8f" width="1200" height="600"/></svg>') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .service-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .breadcrumb {
+            background: transparent;
+            justify-content: center;
+        }
+
+        .breadcrumb-item a {
+            color: #5eb9d6;
+            text-decoration: none;
+        }
+
+        .service-content {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #5eb9d6, #4fa3c7);
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h4 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #2b5d8f, #1a3d5c);
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+
+        .info-box h3 {
+            color: #5eb9d6;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .stat-item i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin: 0.5rem 0;
+        }
+
+        .stat-item p {
+            color: #666;
+            margin: 0;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: start;
+            margin-bottom: 2rem;
+            gap: 2rem;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #5eb9d6, #4fa3c7);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #5eb9d6, #2b5d8f);
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-light-custom {
+            background: white;
+            color: var(--primary-color);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-light-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            color: var(--primary-color);
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist i {
+            color: #5eb9d6;
+            margin-right: 1rem;
+        }
+
+        .container-type {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .container-type h5 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <h2 class="mb-0">GANGES</h2>
+                <small class="brand-subtitle">Shipping & Logistics</small>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../index.html#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="service-hero">
+        <div class="container">
+            <h1>Ocean Freight Services</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html#services">Services</a></li>
+                    <li class="breadcrumb-item active text-white">Ocean Freight</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="service-content">
+        <div class="container">
+            <!-- Introduction -->
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto fade-in-up">
+                    <h2 class="section-title">Comprehensive Sea Transport Solutions</h2>
+                    <p class="lead">
+                        Navigate global markets with our reliable ocean freight services. We connect continents through strategic port partnerships, maritime expertise, and end-to-end cargo visibility.
+                    </p>
+                    <p>
+                        From full container loads (FCL) to less than container loads (LCL), breakbulk, and specialized cargo, our ocean freight solutions are designed to move goods across the world's seas efficiently and cost-effectively. With 20+ years of maritime logistics experience, we ensure your cargo reaches any port worldwide safely.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-item fade-in-up delay-1">
+                    <i class="fas fa-ship"></i>
+                    <h3>5000+</h3>
+                    <p>Annual Shipments</p>
+                </div>
+                <div class="stat-item fade-in-up delay-2">
+                    <i class="fas fa-anchor"></i>
+                    <h3>200+</h3>
+                    <p>Port Networks</p>
+                </div>
+                <div class="stat-item fade-in-up delay-3">
+                    <i class="fas fa-box"></i>
+                    <h3>50K+</h3>
+                    <p>TEU Capacity</p>
+                </div>
+                <div class="stat-item fade-in-up delay-4">
+                    <i class="fas fa-certificate"></i>
+                    <h3>ISO</h3>
+                    <p>Certified Operations</p>
+                </div>
+            </div>
+
+            <!-- Container Types -->
+            <div class="row my-5">
+                <div class="col-12 fade-in-left">
+                    <h2 class="section-title">Container & Cargo Types</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="container-type fade-in-left delay-1">
+                        <h5><i class="fas fa-box me-2 text-primary"></i>20' & 40' Standard Containers</h5>
+                        <p class="mb-0">General cargo, palletized goods, cartons - the workhorse of ocean freight.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="container-type fade-in-right delay-1">
+                        <h5><i class="fas fa-temperature-low me-2 text-primary"></i>Reefer Containers</h5>
+                        <p class="mb-0">Temperature-controlled shipping for perishables, pharmaceuticals, and sensitive goods.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="container-type fade-in-left delay-2">
+                        <h5><i class="fas fa-truck-loading me-2 text-primary"></i>Open Top & Flat Rack</h5>
+                        <p class="mb-0">Oversized machinery, construction equipment, and non-standard cargo.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="container-type fade-in-right delay-2">
+                        <h5><i class="fas fa-cubes me-2 text-primary"></i>LCL (Consolidated)</h5>
+                        <p class="mb-0">Cost-effective solution for smaller shipments sharing container space.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Features -->
+            <div class="row my-5">
+                <div class="col-12 fade-in-left">
+                    <h2 class="section-title">Why Choose Our Ocean Freight?</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card fade-in-left delay-1">
+                        <i class="fas fa-route"></i>
+                        <h4>Direct & Transshipment Routes</h4>
+                        <p>Access to major shipping lines with both direct sailings and optimized transshipment routes to reduce transit times and costs.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card fade-in-right delay-1">
+                        <i class="fas fa-file-invoice"></i>
+                        <h4>Documentation & Compliance</h4>
+                        <p>Expert handling of bills of lading, customs documentation, certificates of origin, and all maritime paperwork.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card fade-in-left delay-2">
+                        <i class="fas fa-warehouse"></i>
+                        <h4>Port-to-Door Service</h4>
+                        <p>Complete logistics solution including port handling, inland transportation, and final delivery to your warehouse.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card fade-in-right delay-2">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Cargo Insurance</h4>
+                        <p>Comprehensive marine insurance options to protect your valuable shipments against all maritime risks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Our Process -->
+            <div class="row my-5">
+                <div class="col-lg-6">
+                    <h2 class="section-title fade-in-left">Shipping Process</h2>
+                    <div class="process-step fade-in-left delay-1">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h5>Quote & Booking</h5>
+                            <p>Request rates for your route. We provide competitive pricing and book space with trusted carriers.</p>
+                        </div>
+                    </div>
+                    <div class="process-step fade-in-left delay-2">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h5>Cargo Pickup & Stuffing</h5>
+                            <p>We arrange container pickup or coordinate LCL consolidation. Professional loading and securing of cargo.</p>
+                        </div>
+                    </div>
+                    <div class="process-step fade-in-left delay-3">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h5>Ocean Transit</h5>
+                            <p>Vessel departs with your cargo. Real-time tracking and regular status updates throughout the journey.</p>
+                        </div>
+                    </div>
+                    <div class="process-step fade-in-left delay-4">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h5>Arrival & Clearance</h5>
+                            <p>Port discharge, customs clearance, and final delivery or pickup arrangement at destination.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="info-box fade-in-right">
+                        <h3><i class="fas fa-globe-americas me-2"></i>Global Coverage</h3>
+                        <ul class="checklist">
+                            <li><i class="fas fa-anchor"></i> Middle East - Dubai, Jebel Ali, Abu Dhabi</li>
+                            <li><i class="fas fa-anchor"></i> Asia Pacific - Singapore, Hong Kong, Shanghai</li>
+                            <li><i class="fas fa-anchor"></i> Europe - Rotterdam, Hamburg, Felixstowe</li>
+                            <li><i class="fas fa-anchor"></i> Americas - Los Angeles, New York, Santos</li>
+                            <li><i class="fas fa-anchor"></i> Africa - Durban, Lagos, Mombasa</li>
+                            <li><i class="fas fa-anchor"></i> Australia - Melbourne, Sydney, Brisbane</li>
+                        </ul>
+                        <div class="mt-4">
+                            <h3><i class="fas fa-shield-alt me-2"></i>Our Guarantee</h3>
+                            <p>Competitive rates, reliable schedules, and transparent communication throughout your shipment journey.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Industries Served -->
+            <div class="row my-5">
+                <div class="col-12 fade-in-up">
+                    <h2 class="section-title">Industries We Serve</h2>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="text-center p-3 fade-in-up delay-1">
+                        <i class="fas fa-industry fa-3x text-primary mb-3"></i>
+                        <h5>Manufacturing</h5>
+                        <p>Raw materials, machinery, finished goods</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="text-center p-3 fade-in-up delay-2">
+                        <i class="fas fa-shopping-cart fa-3x text-primary mb-3"></i>
+                        <h5>Retail & E-commerce</h5>
+                        <p>Consumer goods, electronics, fashion</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="text-center p-3 fade-in-up delay-3">
+                        <i class="fas fa-car fa-3x text-primary mb-3"></i>
+                        <h5>Automotive</h5>
+                        <p>Vehicles, spare parts, components</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="text-center p-3 fade-in-up delay-4">
+                        <i class="fas fa-flask fa-3x text-primary mb-3"></i>
+                        <h5>Chemicals</h5>
+                        <p>Industrial chemicals, petrochemicals</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section fade-in">
+        <div class="container">
+            <h2>Ready to Ship Across Oceans?</h2>
+            <p class="lead mb-4">Get competitive ocean freight rates for your next shipment</p>
+            <a href="../index.html#contact" class="btn btn-light-custom me-3">Request Quote</a>
+            <a href="tel:+971562580737" class="btn btn-outline-light btn-lg">Call: +971 56 258 0737</a>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Scroll Animation Script -->
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Optional: unobserve after animation to improve performance
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.fade-in-left, .fade-in-right, .fade-in-up, .fade-in');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
