@@ -10,10 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initContactForm();
     initWowAnimations();
     initServicesHover();
-    initProjectHover();
     initMobileMenu();
     initStatsAnimations();
-    initServicesScrollAnimation(); // New function for services scroll animation
+    initServicesScrollAnimation();
 });
 
 // Services Scroll Animation - Trigger on scroll
@@ -209,8 +208,7 @@ function initSmoothScrolling() {
 function initLoadingScreen() {
     const loading = document.createElement('div');
     loading.className = 'loading';
-    // loading.innerHTML = '<div class="spinner"></div>';
-     loading.innerHTML = ' <img class="logo" src="./assets/logo.png" alt="">';
+    loading.innerHTML = ' <img class="logo" src="./assets/logo.png" alt="">';
     document.body.appendChild(loading);
     
     // Hide loading screen when page is loaded
@@ -269,27 +267,6 @@ function initServicesHover() {
         
         item.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0)';
-        });
-    });
-}
-
-// Project Hover Effects
-function initProjectHover() {
-    const projectItems = document.querySelectorAll('.project-item');
-
-    projectItems.forEach((item, index) => {
-        // Add staggered animation on page load
-        item.style.animation = `fadeIn 0.6s ease ${index * 0.2}s forwards`;
-        item.style.opacity = '0';
-
-        // Add hover sound effect (optional)
-        item.addEventListener('mouseenter', function() {
-            // Add any additional interaction logic here
-            console.log('Project hovered:', this);
-        });
-
-        item.addEventListener('mouseleave', function() {
-            // Reset any additional state
         });
     });
 }
@@ -505,17 +482,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
-
-// Scroll Animation
-    const elements = document.querySelectorAll('.scroll-anim');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+// Scroll Animation for project items
+const elements = document.querySelectorAll('.scroll-anim');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
+            entry.target.classList.add('animate');
         }
-      });
-    }, { threshold: 0.2 });
+    });
+}, { threshold: 0.2 });
 
-    elements.forEach(el => observer.observe(el));
-
+elements.forEach(el => observer.observe(el));
