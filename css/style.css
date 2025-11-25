@@ -407,7 +407,7 @@ body {
     font-size: 0.9rem;
     opacity: 0;
     transform: translateX(-50px);
-    transition: all 0.8s ease;
+    transition: all 0.3s ease;
 }
 
 .section-header h5.animate-in {
@@ -422,7 +422,7 @@ body {
     margin-top: 10px;
     opacity: 0;
     transform: translateX(-50px);
-    transition: all 0.8s ease 0.2s;
+    transition: all 0.3s ease 0.2s;
 }
 
 .section-header h2.animate-in {
@@ -439,7 +439,7 @@ body {
     border-bottom: 1px solid rgba(94, 185, 214, 0.15);
     opacity: 0;
     transform: translateX(-100px);
-    transition: all 1s ease;
+    transition: all 0.5s ease;
 }
 
 .service-item.flex-row-reverse {

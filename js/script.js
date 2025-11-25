@@ -257,7 +257,7 @@ function initServicesScrollAnimation() {
                     }, 100);
                     setTimeout(() => {
                         headerSubtitle.classList.add('animate-in');
-                    }, 300);
+                    }, 100);
                 }
                 
                 // Animate service items with stagger
